@@ -9,23 +9,25 @@ A real-time Slack catch-up activity feed. Messages from connected Slack channels
 ## Architecture
 
 ```
-Slack → POST /webhook/slack → Node.js server → SSE /events → Browser feed
-                                                ↑
-                             mock generator (MOCK_EVENTS=true)
+Slack → POST /webhook/slack → Go server → SSE /events → Browser feed
+                                   ↑
+                      mock generator (MOCK_EVENTS=true)
 ```
 
-- **`server.js`** — Vanilla Node.js HTTP server (no external dependencies)
+- **`main.go`** — Go HTTP server (zero external dependencies)
 - **`public/index.html`** — Single-file frontend with embedded CSS/JS
-- **`deploy/`** — Caddy config, systemd unit, deploy script
+- **`deploy/`** — Caddy config, systemd unit reference, deploy script
 
 ## Local development
 
 ```bash
-npm run dev        # starts server on :8391 with mock events enabled
-# then open http://localhost:8391
+go run .
+# or with mock events explicitly on:
+MOCK_EVENTS=true go run .
+# open http://localhost:8391
 ```
 
-Mock messages fire every 10 seconds so you can watch the feed populate.
+Mock messages fire every 10 seconds so you can watch the feed populate. Six pre-seeded messages appear on first load.
 
 ## Endpoints
 
@@ -35,7 +37,7 @@ Mock messages fire every 10 seconds so you can watch the feed populate.
 | `/events` | GET | SSE stream (real-time messages) |
 | `/api/history` | GET | Recent message history (JSON) |
 | `/webhook/slack` | POST | Slack Events API receiver |
-| `/health` | GET | Health check |
+| `/health` | GET | Health check — returns client count and message count |
 
 ## Wiring real Slack channels (next step)
 
@@ -52,22 +54,22 @@ Mock messages fire every 10 seconds so you can watch the feed populate.
    - `message.channels` — public channel messages
    - `message.groups` — private channel messages (optional)
    - `app_mention` — @mentions of the bot
-5. Under **OAuth & Permissions**, add scopes: `channels:history`, `channels:read`
-6. Install the app to your workspace
+5. Under **OAuth & Permissions**, add bot scopes: `channels:history`, `channels:read`
+6. Install the app to your workspace and note the **Signing Secret** from Basic Information
 
-### 2. Configure the server
+### 2. Update the systemd service
 
-Copy `.env.example` to `.env` on the server and fill in:
+Edit `/etc/systemd/system/slacker.service` on the server and add:
 
-```bash
-SLACK_SIGNING_SECRET=<from Slack app Basic Information page>
-MOCK_EVENTS=false
+```ini
+Environment=SLACK_SIGNING_SECRET=<your-signing-secret>
+Environment=MOCK_EVENTS=false
 ```
 
-Then restart the service:
+Then reload:
 
 ```bash
-systemctl restart slacker
+systemctl daemon-reload && systemctl restart slacker
 ```
 
 ### 3. Invite the bot to channels
@@ -77,22 +79,23 @@ In each Slack channel you want to monitor:
 /invite @Slacker
 ```
 
-Messages will now stream into the feed immediately.
+Messages will now stream into the feed in real time.
 
 ## Deployment
 
+The server uses the standard `r3x-deploy-go-repo` workflow. On the server as root:
+
 ```bash
-# On the server as root:
-bash /opt/slacker/deploy/deploy.sh
+r3x-deploy-go-repo slacker slacker.r3x.io git@github.com:ev-claw/slacker.git main
 ```
 
-The script clones/pulls the repo, installs the systemd service, and configures Caddy.
+Or just run `deploy/deploy.sh`. The script clones/pulls the repo, compiles the Go binary, installs the systemd service, and configures Caddy.
 
 ## Environment variables
 
 | Variable | Default | Description |
 |---|---|---|
 | `PORT` | `8391` | Server listen port |
+| `HOST` | _(empty)_ | Bind address (e.g. `127.0.0.1`) |
 | `MOCK_EVENTS` | `true` | Enable mock event generator |
 | `SLACK_SIGNING_SECRET` | _(empty)_ | Slack app signing secret for webhook verification |
-| `SLACK_BOT_TOKEN` | _(empty)_ | Bot OAuth token (reserved for future use) |
