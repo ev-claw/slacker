@@ -21,18 +21,6 @@
       --red: #f85149;
       --purple: #bc8cff;
       --orange: #ffa657;
-      --pink: #ff7b72;
-      --teal: #39d353;
-
-      /* Channel colors (cycled by hash) */
-      --c0: #58a6ff;
-      --c1: #3fb950;
-      --c2: #d29922;
-      --c3: #bc8cff;
-      --c4: #ffa657;
-      --c5: #ff7b72;
-      --c6: #39d353;
-      --c7: #56d364;
 
       --font: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
       --mono: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
@@ -64,12 +52,7 @@
       z-index: 10;
     }
 
-    .logo {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      color: var(--text);
-    }
+    .logo { font-size: 18px; font-weight: 700; letter-spacing: -0.5px; color: var(--text); }
     .logo span { color: var(--accent); }
 
     .status-pill {
@@ -85,228 +68,204 @@
       color: var(--text-muted);
       transition: all 0.3s;
     }
-    .status-pill.connected { color: var(--green); border-color: #1a3a1f; background: #0f2016; }
-    .status-pill.disconnected { color: var(--red); border-color: #3a1a1a; background: #200f0f; }
-    .status-dot {
-      width: 6px; height: 6px;
-      border-radius: 50%;
-      background: currentColor;
-    }
+    .status-pill.connected  { color: var(--green); border-color: #1a3a1f; background: #0f2016; }
+    .status-pill.disconnected { color: var(--red);   border-color: #3a1a1a; background: #200f0f; }
+    .status-dot { width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
     .status-pill.connected .status-dot { animation: pulse 2s infinite; }
 
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      50%       { opacity: 0.4; }
     }
 
     .mock-badge {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: #1c1a0f;
-      border: 1px solid #3d3210;
-      color: var(--yellow);
-      font-weight: 600;
-      letter-spacing: 0.5px;
+      font-size: 11px; padding: 2px 8px; border-radius: 4px;
+      background: #1c1a0f; border: 1px solid #3d3210;
+      color: var(--yellow); font-weight: 600; letter-spacing: 0.5px;
     }
 
-    .header-right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .msg-count {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
+    .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+    .msg-count { font-size: 12px; color: var(--text-muted); }
 
     .btn-clear {
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 6px;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      cursor: pointer;
-      transition: all 0.15s;
-      font-family: inherit;
+      font-size: 12px; padding: 4px 10px; border-radius: 6px;
+      background: transparent; border: 1px solid var(--border);
+      color: var(--text-muted); cursor: pointer; transition: all 0.15s; font-family: inherit;
     }
     .btn-clear:hover { background: var(--surface2); color: var(--text); border-color: #484f58; }
 
     /* ── Layout ──────────────────────────────────────────────────────────── */
-    .layout {
-      display: flex;
-      flex: 1;
-      overflow: hidden;
-    }
+    .layout { display: flex; flex: 1; overflow: hidden; }
 
     /* ── Sidebar ─────────────────────────────────────────────────────────── */
     aside {
-      width: 180px;
-      flex-shrink: 0;
-      background: var(--surface);
-      border-right: 1px solid var(--border);
-      overflow-y: auto;
-      padding: 12px 0;
+      width: 180px; flex-shrink: 0; background: var(--surface);
+      border-right: 1px solid var(--border); overflow-y: auto; padding: 12px 0;
     }
 
     .sidebar-label {
-      padding: 4px 16px 6px;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      color: var(--text-dim);
+      padding: 4px 16px 6px; font-size: 11px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-dim);
     }
 
     .channel-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      width: 100%;
-      padding: 5px 16px;
-      background: none;
-      border: none;
-      color: var(--text-muted);
-      cursor: pointer;
-      font-family: inherit;
-      font-size: 13.5px;
-      text-align: left;
-      border-radius: 0;
+      display: flex; align-items: center; gap: 8px; width: 100%;
+      padding: 5px 16px; background: none; border: none; color: var(--text-muted);
+      cursor: pointer; font-family: inherit; font-size: 13.5px; text-align: left;
       transition: background 0.1s, color 0.1s;
     }
-    .channel-btn:hover { background: var(--surface2); color: var(--text); }
+    .channel-btn:hover  { background: var(--surface2); color: var(--text); }
     .channel-btn.active { background: rgba(88,166,255,0.1); color: var(--accent); }
 
     .channel-hash { opacity: 0.5; font-size: 13px; }
     .channel-count {
-      margin-left: auto;
-      font-size: 11px;
-      background: var(--surface2);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 0 6px;
-      min-width: 20px;
-      text-align: center;
-      color: var(--text-dim);
+      margin-left: auto; font-size: 11px; background: var(--surface2);
+      border: 1px solid var(--border); border-radius: 100px;
+      padding: 0 6px; min-width: 20px; text-align: center; color: var(--text-dim);
     }
-    .channel-btn.active .channel-count { background: rgba(88,166,255,0.15); border-color: rgba(88,166,255,0.3); color: var(--accent); }
+    .channel-btn.active .channel-count {
+      background: rgba(88,166,255,0.15); border-color: rgba(88,166,255,0.3); color: var(--accent);
+    }
 
     /* ── Feed ────────────────────────────────────────────────────────────── */
-    main {
-      flex: 1;
-      overflow-y: auto;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-    }
+    main { flex: 1; overflow-y: auto; display: flex; flex-direction: column; }
 
     #feed {
       flex: 1;
-      padding: 16px 20px;
+      padding: 12px 20px 20px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 2px;
     }
 
+    /* Extra breathing room before the first message of a new group */
+    .msg.cont + .msg:not(.cont) { margin-top: 5px; }
+
     .empty-state {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      flex: 1;
-      gap: 12px;
-      color: var(--text-dim);
-      padding: 40px;
-      text-align: center;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      flex: 1; gap: 12px; color: var(--text-dim); padding: 40px; text-align: center;
     }
-    .empty-icon { font-size: 36px; }
+    .empty-icon  { font-size: 36px; }
     .empty-title { font-size: 15px; font-weight: 600; color: var(--text-muted); }
-    .empty-sub { font-size: 13px; max-width: 300px; line-height: 1.6; }
+    .empty-sub   { font-size: 13px; max-width: 300px; line-height: 1.6; }
 
     /* ── Message card ────────────────────────────────────────────────────── */
     .msg {
       display: flex;
       gap: 12px;
-      padding: 10px 14px;
+      padding: 8px 14px;
       border-radius: 8px;
       background: var(--surface);
       border: 1px solid var(--border);
       transition: border-color 0.2s;
-      animation: slide-in 0.25s ease-out;
+      animation: slide-in 0.2s ease-out;
     }
     .msg:hover { border-color: #484f58; }
-    .msg.new { border-color: rgba(88,166,255,0.35); }
+    .msg.new   { border-color: rgba(88,166,255,0.35); }
+
+    /* Continuation message — same user/channel, within 5 min */
+    .msg.cont {
+      background: transparent;
+      border-color: transparent;
+      padding-top: 2px;
+      padding-bottom: 2px;
+    }
+    .msg.cont:hover { background: rgba(22,27,34,0.7); border-color: var(--border); }
 
     @keyframes slide-in {
-      from { opacity: 0; transform: translateY(8px); }
+      from { opacity: 0; transform: translateY(6px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     .msg-avatar {
-      width: 32px;
-      height: 32px;
-      border-radius: 6px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-      font-weight: 700;
-      color: white;
-      text-transform: uppercase;
+      width: 32px; height: 32px; border-radius: 6px; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px; font-weight: 700; color: white; text-transform: uppercase;
     }
+
+    /* Continuation: hide avatar; show hover time hint */
+    .msg.cont .msg-avatar {
+      background: transparent !important;
+      font-size: 10px; font-weight: 400; color: var(--text-dim) !important;
+      opacity: 0; transition: opacity 0.15s;
+    }
+    .msg.cont:hover .msg-avatar { opacity: 1; }
 
     .msg-body { flex: 1; min-width: 0; }
 
     .msg-meta {
-      display: flex;
-      align-items: baseline;
-      gap: 8px;
-      margin-bottom: 3px;
-      flex-wrap: wrap;
+      display: flex; align-items: baseline; gap: 8px;
+      margin-bottom: 3px; flex-wrap: wrap;
     }
+    .msg.cont .msg-meta { display: none; }
 
-    .msg-user {
-      font-weight: 600;
-      font-size: 13.5px;
-      color: var(--text);
-    }
-
+    .msg-user    { font-weight: 600; font-size: 13.5px; color: var(--text); }
     .msg-channel {
-      font-size: 12px;
-      font-weight: 500;
-      padding: 1px 7px;
-      border-radius: 4px;
-      background: transparent;
-      border-width: 1px;
-      border-style: solid;
+      font-size: 12px; font-weight: 500; padding: 1px 7px; border-radius: 4px;
+      background: transparent; border-width: 1px; border-style: solid;
     }
-
-    .msg-time {
-      font-size: 11px;
-      color: var(--text-dim);
-      margin-left: auto;
-    }
-
-    .msg-mock {
-      font-size: 10px;
-      padding: 1px 5px;
-      border-radius: 3px;
-      background: #1c1a0f;
-      border: 1px solid #3d3210;
-      color: var(--yellow);
-      font-weight: 600;
-      letter-spacing: 0.3px;
+    .msg-time    { font-size: 11px; color: var(--text-dim); margin-left: auto; }
+    .msg-mock    {
+      font-size: 10px; padding: 1px 5px; border-radius: 3px;
+      background: #1c1a0f; border: 1px solid #3d3210;
+      color: var(--yellow); font-weight: 600; letter-spacing: 0.3px;
     }
 
     .msg-text {
-      font-size: 13.5px;
-      color: var(--text);
-      word-break: break-word;
-      line-height: 1.55;
+      font-size: 13.5px; color: var(--text); word-break: break-word; line-height: 1.55;
+    }
+
+    /* Slack mrkdwn rendered elements */
+    .msg-text strong { font-weight: 700; }
+    .msg-text em     { font-style: italic; }
+    .msg-text del    { opacity: 0.6; }
+    .msg-text code {
+      font-family: var(--mono); font-size: 12px;
+      background: rgba(110,118,129,0.15); border: 1px solid rgba(110,118,129,0.25);
+      border-radius: 4px; padding: 1px 5px;
+    }
+    .msg-text pre {
+      font-family: var(--mono); font-size: 12px; line-height: 1.5;
+      background: rgba(110,118,129,0.1); border: 1px solid var(--border);
+      border-radius: 6px; padding: 8px 12px; margin-top: 6px;
+      overflow-x: auto; white-space: pre-wrap;
+    }
+    .msg-text pre code { background: none; border: none; padding: 0; }
+    .msg-text a { color: var(--accent); text-decoration: none; }
+    .msg-text a:hover { text-decoration: underline; }
+    .mention    {
+      background: rgba(88,166,255,0.15); color: var(--accent);
+      border-radius: 3px; padding: 0 3px; font-weight: 500; font-size: 13px;
+    }
+    .ch-mention {
+      background: rgba(88,166,255,0.1); color: var(--accent);
+      border-radius: 3px; padding: 0 3px; font-size: 13px;
+    }
+
+    /* ── New messages divider ────────────────────────────────────────────── */
+    .new-divider {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 0 4px; color: var(--red);
+      font-size: 11px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase;
+      flex-shrink: 0;
+    }
+    .new-divider::before, .new-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: rgba(248,81,73,0.35);
+    }
+
+    /* ── Jump-to-new button ──────────────────────────────────────────────── */
+    #jump-btn {
+      position: fixed; bottom: 24px; right: 24px;
+      padding: 8px 18px; background: var(--accent); color: white;
+      border: none; border-radius: 20px; font-size: 13px; font-weight: 600;
+      cursor: pointer; box-shadow: 0 4px 14px rgba(88,166,255,0.4);
+      display: none; z-index: 100; font-family: inherit;
+      transition: transform 0.1s, box-shadow 0.1s;
+    }
+    #jump-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(88,166,255,0.5);
     }
 
     /* ── Scrollbar ───────────────────────────────────────────────────────── */
@@ -319,6 +278,7 @@
     @media (max-width: 600px) {
       aside { width: 130px; }
       .msg-time { display: none; }
+      #jump-btn { bottom: 16px; right: 16px; }
     }
   </style>
 </head>
@@ -357,114 +317,214 @@
   </main>
 </div>
 
+<button id="jump-btn">↓ New messages</button>
+
 <script>
 (function () {
   'use strict';
 
   // ── State ──────────────────────────────────────────────────────────────────
-  const messages = [];
+  const messages      = [];
   const channelCounts = {};
-  let activeChannel = 'all';
-  let autoScroll = true;
-  let hasMock = false;
+  let activeChannel   = 'all';
+  let autoScroll      = true;
+  let hasMock         = false;
+
+  // Unread tracking — persisted across sessions
+  const VISIT_KEY   = 'slacker_last_visit';
+  const lastVisit   = new Date(localStorage.getItem(VISIT_KEY) || '1970-01-01T00:00:00Z');
+  let newDivider    = null;  // DOM element for the divider
+  let newCount      = 0;     // count of messages since lastVisit
+  let hadOldMsgs    = false; // true once we've seen at least one "old" message
+
+  function saveVisit() {
+    localStorage.setItem(VISIT_KEY, new Date().toISOString());
+  }
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') saveVisit();
+  });
+  window.addEventListener('beforeunload', saveVisit);
 
   // ── DOM refs ───────────────────────────────────────────────────────────────
-  const feed       = document.getElementById('feed');
-  const sidebar    = document.getElementById('sidebar');
-  const emptyState = document.getElementById('empty-state');
-  const statusPill = document.getElementById('status-pill');
-  const statusText = document.getElementById('status-text');
-  const msgCount   = document.getElementById('msg-count');
-  const mockBadge  = document.getElementById('mock-badge');
-  const countAll   = document.getElementById('count-all');
-  const btnClear   = document.getElementById('btn-clear');
+  const feed        = document.getElementById('feed');
+  const sidebar     = document.getElementById('sidebar');
+  const emptyState  = document.getElementById('empty-state');
+  const statusPill  = document.getElementById('status-pill');
+  const statusText  = document.getElementById('status-text');
+  const msgCount    = document.getElementById('msg-count');
+  const mockBadge   = document.getElementById('mock-badge');
+  const countAll    = document.getElementById('count-all');
+  const btnClear    = document.getElementById('btn-clear');
+  const jumpBtn     = document.getElementById('jump-btn');
+  const mainEl      = document.querySelector('main');
 
-  const CHANNEL_COLORS = ['#58a6ff','#3fb950','#d29922','#bc8cff','#ffa657','#ff7b72','#39d353','#56d364'];
-  const USER_COLORS    = ['#58a6ff','#3fb950','#d29922','#bc8cff','#ffa657','#ff7b72','#39d353','#56d364','#e06c75','#61afef'];
+  const CH_COLORS = ['#58a6ff','#3fb950','#d29922','#bc8cff','#ffa657','#ff7b72','#39d353','#56d364'];
+  const U_COLORS  = ['#58a6ff','#3fb950','#d29922','#bc8cff','#ffa657','#ff7b72','#39d353','#56d364','#e06c75','#61afef'];
 
-  function hashIndex(str, len) {
+  function hashIdx(s, n) {
     let h = 0;
-    for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) >>> 0;
-    return h % len;
+    for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0;
+    return h % n;
   }
-
-  function channelColor(name) { return CHANNEL_COLORS[hashIndex(name, CHANNEL_COLORS.length)]; }
-  function userColor(name)    { return USER_COLORS[hashIndex(name, USER_COLORS.length)]; }
-  function userInitials(name) { return (name || '?').slice(0, 2).toUpperCase(); }
+  function chColor(name)  { return CH_COLORS[hashIdx(name, CH_COLORS.length)]; }
+  function uColor(name)   { return U_COLORS[hashIdx(name, U_COLORS.length)]; }
+  function uInit(name)    { return (name || '?').slice(0, 2).toUpperCase(); }
 
   function fmtTime(iso) {
-    const d = new Date(iso);
-    const now = new Date();
-    const diffMin = (now - d) / 60000;
-    if (diffMin < 1)   return 'just now';
-    if (diffMin < 60)  return `${Math.floor(diffMin)}m ago`;
-    if (diffMin < 1440) {
-      const h = d.getHours().toString().padStart(2, '0');
-      const m = d.getMinutes().toString().padStart(2, '0');
-      return `${h}:${m}`;
+    const d = new Date(iso), now = new Date();
+    const diff = (now - d) / 60000;
+    if (diff < 1)    return 'just now';
+    if (diff < 60)   return Math.floor(diff) + 'm ago';
+    if (diff < 1440) {
+      return d.getHours().toString().padStart(2, '0') + ':' +
+             d.getMinutes().toString().padStart(2, '0');
     }
     return d.toLocaleDateString(undefined, { month: 'short', day: 'numeric' });
   }
 
-  // ── Render a single message card ───────────────────────────────────────────
-  function renderMessage(msg, isNew) {
+  // ── Slack mrkdwn renderer ──────────────────────────────────────────────────
+  // Safely converts Slack markup to HTML. Processes left-to-right so code spans
+  // and Slack constructs are handled before inline formatting, preventing XSS.
+
+  function esc(s) {
+    return String(s || '')
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+  }
+  function escA(s) {  // for href attributes
+    return String(s || '').replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+  }
+
+  function slackLink(inner) {
+    if (inner[0] === '@') {
+      const parts = inner.slice(1).split('|');
+      return '<span class="mention">@' + esc(parts[1] || parts[0]) + '</span>';
+    }
+    if (inner[0] === '#') {
+      const parts = inner.slice(1).split('|');
+      return '<span class="ch-mention">#' + esc(parts[1] || parts[0]) + '</span>';
+    }
+    if (inner[0] === '!') {
+      const what = inner.slice(1).split('|')[0];
+      return '<span class="mention">@' + esc(what) + '</span>';
+    }
+    const pipe = inner.indexOf('|');
+    const url  = pipe === -1 ? inner : inner.slice(0, pipe);
+    const lbl  = pipe === -1 ? inner : inner.slice(pipe + 1);
+    if (/^https?:\/\//i.test(url)) {
+      return '<a href="' + escA(url) + '" target="_blank" rel="noopener noreferrer">' + esc(lbl) + '</a>';
+    }
+    return esc(lbl || url);
+  }
+
+  function inlineFmt(html) {
+    // Bold: *text*
+    html = html.replace(/\*([^*\n]+)\*/g, '<strong>$1</strong>');
+    // Italic: _text_ (preceded by space/start, followed by space/end/punct)
+    html = html.replace(/(^|\s)_([^_\n]+)_(?=\s|$|[.,;!?])/g, '$1<em>$2</em>');
+    // Strikethrough: ~text~
+    html = html.replace(/~([^~\n]+)~/g, '<del>$1</del>');
+    return html;
+  }
+
+  function renderMrkdwn(raw) {
+    if (!raw) return '';
+    let out = '', i = 0;
+    while (i < raw.length) {
+      // Code block ```
+      if (raw.startsWith('```', i)) {
+        const end = raw.indexOf('```', i + 3);
+        if (end !== -1) {
+          out += '<pre><code>' + esc(raw.slice(i + 3, end)) + '</code></pre>';
+          i = end + 3; continue;
+        }
+      }
+      // Inline code `
+      if (raw[i] === '`') {
+        const end = raw.indexOf('`', i + 1);
+        if (end !== -1) {
+          out += '<code>' + esc(raw.slice(i + 1, end)) + '</code>';
+          i = end + 1; continue;
+        }
+      }
+      // Slack construct <...>
+      if (raw[i] === '<') {
+        const end = raw.indexOf('>', i + 1);
+        if (end !== -1) {
+          out += slackLink(raw.slice(i + 1, end));
+          i = end + 1; continue;
+        }
+      }
+      // Plain text until next special char
+      let j = i + 1;
+      while (j < raw.length && raw[j] !== '<' && raw[j] !== '`') j++;
+      out += inlineFmt(esc(raw.slice(i, j)));
+      i = j;
+    }
+    return out.replace(/\n/g, '<br>');
+  }
+
+  // ── Check if message continues the previous one ────────────────────────────
+  function isContinuation(msg) {
+    if (messages.length === 0) return false;
+    const prev = messages[messages.length - 1];
+    if (prev.user !== msg.user || prev.channel !== msg.channel) return false;
+    const diffMin = (new Date(msg.ts) - new Date(prev.ts)) / 60000;
+    return diffMin >= 0 && diffMin < 5;
+  }
+
+  // ── Render a message card ──────────────────────────────────────────────────
+  function renderMessage(msg, isNew, cont) {
     const el = document.createElement('div');
-    el.className = 'msg' + (isNew ? ' new' : '');
-    el.dataset.id  = msg.id;
+    el.className = 'msg' + (isNew ? ' new' : '') + (cont ? ' cont' : '');
+    el.dataset.id      = msg.id;
     el.dataset.channel = msg.channel;
 
-    const uc = userColor(msg.user);
-    const cc = channelColor(msg.channel);
-    const hexAlpha = '20'; // ~12% opacity for bg
+    const uc = uColor(msg.user);
+    const cc = chColor(msg.channel);
+    const ts = fmtTime(msg.ts);
 
-    el.innerHTML = `
-      <div class="msg-avatar" style="background:${uc}22;color:${uc}">${userInitials(msg.user)}</div>
-      <div class="msg-body">
-        <div class="msg-meta">
-          <span class="msg-user">${escHtml(msg.user)}</span>
-          <span class="msg-channel" style="color:${cc};background:${cc}18;border-color:${cc}30">#${escHtml(msg.channel)}</span>
-          ${msg.mock ? '<span class="msg-mock">MOCK</span>' : ''}
-          <span class="msg-time">${fmtTime(msg.ts)}</span>
-        </div>
-        <div class="msg-text">${escHtml(msg.text)}</div>
-      </div>
-    `;
+    const avatarHtml = cont
+      ? '<div class="msg-avatar">' + ts + '</div>'
+      : '<div class="msg-avatar" style="background:' + uc + '22;color:' + uc + '">' + uInit(msg.user) + '</div>';
+
+    el.innerHTML =
+      avatarHtml +
+      '<div class="msg-body">' +
+        '<div class="msg-meta">' +
+          '<span class="msg-user">'    + esc(msg.user)    + '</span>' +
+          '<span class="msg-channel" style="color:' + cc + ';background:' + cc + '18;border-color:' + cc + '30">#' + esc(msg.channel) + '</span>' +
+          (msg.mock ? '<span class="msg-mock">MOCK</span>' : '') +
+          '<span class="msg-time">'    + ts               + '</span>' +
+        '</div>' +
+        '<div class="msg-text">' + renderMrkdwn(msg.text) + '</div>' +
+      '</div>';
 
     return el;
   }
 
-  function escHtml(str) {
-    return String(str || '')
-      .replace(/&/g, '&amp;')
-      .replace(/</g, '&lt;')
-      .replace(/>/g, '&gt;')
-      .replace(/"/g, '&quot;');
-  }
-
   // ── Channel sidebar ────────────────────────────────────────────────────────
   function upsertChannelBtn(channel) {
-    if (document.querySelector(`[data-channel="${CSS.escape(channel)}"]`)) return;
-
-    const cc = channelColor(channel);
+    if (document.querySelector('[data-channel="' + CSS.escape(channel) + '"]')) return;
+    const cc  = chColor(channel);
     const btn = document.createElement('button');
-    btn.className = 'channel-btn';
+    btn.className       = 'channel-btn';
     btn.dataset.channel = channel;
-    btn.innerHTML = `
-      <span class="channel-hash" style="color:${cc}">#</span> ${escHtml(channel)}
-      <span class="channel-count" id="count-${escHtml(channel)}">0</span>
-    `;
+    btn.innerHTML =
+      '<span class="channel-hash" style="color:' + cc + '">#</span> ' + esc(channel) +
+      '<span class="channel-count" id="count-' + esc(channel) + '">0</span>';
     btn.addEventListener('click', () => setActiveChannel(channel));
     sidebar.appendChild(btn);
   }
 
   function updateCounts() {
     countAll.textContent = messages.length;
-    for (const [ch, count] of Object.entries(channelCounts)) {
-      const el = document.getElementById(`count-${ch}`);
-      if (el) el.textContent = count;
+    for (const [ch, c] of Object.entries(channelCounts)) {
+      const el = document.getElementById('count-' + ch);
+      if (el) el.textContent = c;
     }
-    const total = messages.length;
-    msgCount.textContent = `${total} message${total !== 1 ? 's' : ''}`;
+    const n = messages.length;
+    msgCount.textContent = n + ' message' + (n !== 1 ? 's' : '');
   }
 
   function setActiveChannel(ch) {
@@ -478,72 +538,103 @@
   }
 
   // ── Auto-scroll ────────────────────────────────────────────────────────────
-  const mainEl = document.querySelector('main');
   mainEl.addEventListener('scroll', () => {
-    const nearBottom = mainEl.scrollHeight - mainEl.scrollTop - mainEl.clientHeight < 80;
-    autoScroll = nearBottom;
+    autoScroll = mainEl.scrollHeight - mainEl.scrollTop - mainEl.clientHeight < 80;
+    updateJumpBtn();
   });
 
   function scrollToBottom() {
     if (autoScroll) mainEl.scrollTop = mainEl.scrollHeight;
   }
 
-  // ── Ingest message ─────────────────────────────────────────────────────────
+  // ── Jump-to-new button ─────────────────────────────────────────────────────
+  function updateJumpBtn() {
+    if (!newDivider || newCount === 0) { jumpBtn.style.display = 'none'; return; }
+    const r  = newDivider.getBoundingClientRect();
+    const mr = mainEl.getBoundingClientRect();
+    jumpBtn.style.display = (r.top < mr.top) ? '' : 'none';
+    jumpBtn.textContent   = '\u2193 ' + newCount + ' new';
+  }
+
+  jumpBtn.addEventListener('click', () => {
+    newDivider.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  // ── Ingest a message ───────────────────────────────────────────────────────
   function ingestMessage(msg, isNew) {
+    const cont     = isContinuation(msg);
+    const msgIsNew = isNew || new Date(msg.ts) > lastVisit;
+
     messages.push(msg);
     channelCounts[msg.channel] = (channelCounts[msg.channel] || 0) + 1;
     if (msg.mock) hasMock = true;
 
     upsertChannelBtn(msg.channel);
+    if (emptyState.parentNode) emptyState.remove();
 
-    // Remove empty state
-    emptyState.remove();
-
-    const el = renderMessage(msg, isNew);
-    if (activeChannel !== 'all' && msg.channel !== activeChannel) {
-      el.style.display = 'none';
+    // Insert divider at first new message, but only if we've already seen old ones
+    if (!msgIsNew) {
+      hadOldMsgs = true;
+    } else if (msgIsNew && !newDivider && hadOldMsgs) {
+      newDivider = document.createElement('div');
+      newDivider.className   = 'new-divider';
+      newDivider.textContent = 'New messages';
+      feed.appendChild(newDivider);
     }
+
+    if (msgIsNew) newCount++;
+
+    const el = renderMessage(msg, isNew && msgIsNew, cont);
+    if (activeChannel !== 'all' && msg.channel !== activeChannel) el.style.display = 'none';
     feed.appendChild(el);
 
-    // Remove 'new' highlight after 3s
-    if (isNew) setTimeout(() => el.classList.remove('new'), 3000);
+    if (isNew && msgIsNew) setTimeout(() => el.classList.remove('new'), 3000);
 
     updateCounts();
     if (hasMock) mockBadge.style.display = '';
     scrollToBottom();
+    updateJumpBtn();
   }
 
   // ── Clear button ───────────────────────────────────────────────────────────
   btnClear.addEventListener('click', () => {
     messages.length = 0;
     Object.keys(channelCounts).forEach(k => delete channelCounts[k]);
+    newDivider  = null;
+    newCount    = 0;
+    hadOldMsgs  = false;
     feed.innerHTML = '';
     feed.appendChild(emptyState);
-    // Reset channel counts in sidebar
     document.querySelectorAll('.channel-count').forEach(el => el.textContent = '0');
     updateCounts();
+    updateJumpBtn();
   });
 
   // ── Refresh timestamps every minute ───────────────────────────────────────
   setInterval(() => {
-    document.querySelectorAll('.msg-time').forEach(el => {
-      const msgEl = el.closest('.msg');
-      const id = msgEl && msgEl.dataset.id;
-      const msg = messages.find(m => m.id === id);
-      if (msg) el.textContent = fmtTime(msg.ts);
+    document.querySelectorAll('.msg').forEach(el => {
+      const msg = messages.find(m => m.id === el.dataset.id);
+      if (!msg) return;
+      const timeEl = el.querySelector('.msg-time');
+      if (timeEl) timeEl.textContent = fmtTime(msg.ts);
+      // Update hover time hint on continuation messages
+      if (el.classList.contains('cont')) {
+        const avatar = el.querySelector('.msg-avatar');
+        if (avatar) avatar.textContent = fmtTime(msg.ts);
+      }
     });
   }, 60_000);
 
   // ── SSE connection ─────────────────────────────────────────────────────────
   function setStatus(state, text) {
-    statusPill.className = 'status-pill ' + state;
-    statusText.textContent = text;
+    statusPill.className    = 'status-pill ' + state;
+    statusText.textContent  = text;
   }
 
   let reconnectDelay = 1000;
 
   function connect() {
-    setStatus('', 'Connecting…');
+    setStatus('', 'Connecting\u2026');
     const es = new EventSource('/events');
 
     es.onopen = () => {
@@ -557,13 +648,17 @@
 
       if (data.type === 'history') {
         data.messages.forEach(m => ingestMessage(m, false));
+        // After history: scroll to unread divider or bottom
+        if (newDivider && newCount > 0) {
+          setTimeout(() => newDivider.scrollIntoView({ block: 'start' }), 50);
+        }
       } else if (data.type === 'message' || data.type === 'app_mention') {
         ingestMessage(data, true);
       }
     };
 
     es.onerror = () => {
-      setStatus('disconnected', 'Reconnecting…');
+      setStatus('disconnected', 'Reconnecting\u2026');
       es.close();
       setTimeout(connect, reconnectDelay);
       reconnectDelay = Math.min(reconnectDelay * 1.5, 30_000);

@@ -7,7 +7,7 @@ Type=simple
 User=www-data
 Group=www-data
 WorkingDirectory=/opt/slacker
-ExecStart=/usr/bin/node /opt/slacker/server.js
+ExecStart=/opt/slacker/slacker
 Environment=PORT=8391
 Environment=MOCK_EVENTS=true
 Restart=always
