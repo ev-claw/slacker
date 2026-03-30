@@ -1,0 +1,4 @@
+slacker.r3x.io {
+    reverse_proxy localhost:8391
+    encode gzip
+}

@@ -1,0 +1,19 @@
+[Unit]
+Description=Slacker — Slack activity feed
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/opt/slacker
+ExecStart=/usr/bin/node /opt/slacker/server.js
+Environment=PORT=8391
+Environment=MOCK_EVENTS=true
+Restart=always
+RestartSec=5
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
